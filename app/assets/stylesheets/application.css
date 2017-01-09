@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ div.nav-bar form.button_to {
+   display: inline-block;
+ }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <%= form_tag '/login' do %>
+    <%= label_tag "Email:" %>
+    <%= text_field_tag :email %><br>
+    <%= label_tag "Password:" %>
+    <%= password_field_tag :password %><br>
+    <%= submit_tag "Log In" %>
+  <% end %>
+
+
+  </body>
+</html>

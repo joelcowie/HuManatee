@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <div class="nav-bar">
+      <%= button_to "home", root_path, method: :get %>
+      <%= button_to "users", users_path, method: :get %>
+      <%= button_to "events", events_path, method: :get %>
+      <% if session[:user_id] %>
+      <%= button_to "log out", logout_path, method: :delete %>
+      <%= button_to "create event", new_event_path, method: :get %>
+      <% else %>
+      <%= button_to "sign up", signup_path, method: :get %>
+      <%= button_to "log in", login_path, method: :get %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

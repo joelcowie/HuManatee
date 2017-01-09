@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit User</title>
+  </head>
+  <body>
+    <h1>Edit User</h1>
+    <%= form_for @user do |f| %>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %><br>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %><br>
+      <%= f.label :email %>
+      <%= f.text_field :email %> <br>
+      <%= f.submit %>
+    <% end %>
+  </body>
+</html>

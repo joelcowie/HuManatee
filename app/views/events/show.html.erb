@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Event</title>
+  </head>
+  <body>
+    <h1><%= @event.title %></h1>
+    <p>Description: <%= @event.description %></p>
+    <p>Date: <%= @event.start_date %> - <%= @event.end_date %></p>
+    <% if session[:user_id] == @event.creator_id %>
+    <%= button_to "Edit Event", edit_event_path(@event), method: :get %>
+    <%= button_to "Delete Event", delete_event_path(@event), method: :delete %>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>All Events</title>
+  </head>
+  <body>
+    <h1>All Events</h1>
+    <ul>
+      <% @events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>

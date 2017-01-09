@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User</title>
+  </head>
+  <body>
+    <p>Name: <%= @user.full_name %></p>
+    <p>Email: <%= @user.email %></p>
+    <% if session[:user_id] == @user.id %>
+    <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+    <%= button_to "Delete User", delete_user_path(@user), method: :delete %>
+    <% end %>
+  </body>
+</html>
