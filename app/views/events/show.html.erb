@@ -7,10 +7,20 @@
   <body>
     <h1><%= @event.title %></h1>
     <p>Description: <%= @event.description %></p>
-    <p>Date: <%= @event.start_date %> - <%= @event.end_date %></p>
+    <p>Date: <%= @event.date_format %></p>
+    <p>Time: <%= @event.time_format %></p>
+    <p>Organizer: <%= link_to @organizer.full_name, user_path(@organizer) %></p>
     <% if session[:user_id] == @event.creator_id %>
     <%= button_to "Edit Event", edit_event_path(@event), method: :get %>
     <%= button_to "Delete Event", delete_event_path(@event), method: :delete %>
     <% end %>
+    <% if !@event.past_event? %>
+      <% if Attendee.find_by(user_id: session[:user_id], event_id: @event.id)%>
+        <%= button_to "Leave Event", leave_event_path(@event), method: :delete %>
+      <% else %>
+        <%= button_to "Attend Event", attend_event_path(@event) %>
+      <% end %>
+    <% end %>
+    <%= button_to "All Volunteers", attendees_path(@event), method: :get%>
   </body>
 </html>

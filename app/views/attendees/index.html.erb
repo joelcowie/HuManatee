@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Attendees Page</title>
+  </head>
+  <body>
+    <h2>Volunteers</h2>
+    <h3>Number Of Volunteers: <%= @attendees.count %></h3>
+    <ol>
+    <% @attendees.each do |attendee|  %>
+      <li><%= link_to attendee.full_name, user_path(attendee) %></li>
+    <% end %>
+    </ol>
+  </body>
+</html>

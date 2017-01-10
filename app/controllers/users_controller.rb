@@ -33,12 +33,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    session.clear
     find_user
     @user.destroy
 
     redirect_to '/'
     # redirect_to login
   end
+
 
   private
 

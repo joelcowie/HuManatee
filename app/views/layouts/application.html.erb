@@ -13,13 +13,22 @@
       <%= button_to "home", root_path, method: :get %>
       <%= button_to "users", users_path, method: :get %>
       <%= button_to "events", events_path, method: :get %>
-      <% if session[:user_id] %>
+      <% if logged_in? %>
+      <%= button_to "profile page", user_path(session[:user_id]), method: :get %>
       <%= button_to "log out", logout_path, method: :delete %>
       <%= button_to "create event", new_event_path, method: :get %>
       <% else %>
       <%= button_to "sign up", signup_path, method: :get %>
       <%= button_to "log in", login_path, method: :get %>
       <% end %>
+    </div>
+    <div class="nav-bar">
+      <% if logged_in? %>
+      <p>Currently Logged in as: <%= current_user.full_name%></p>
+      <% else %>
+      <p>Not currently logged in</p>
+      <% end %>
+
     </div>
     <%= yield %>
   </body>

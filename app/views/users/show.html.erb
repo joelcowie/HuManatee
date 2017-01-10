@@ -5,8 +5,30 @@
     <title>User</title>
   </head>
   <body>
-    <p>Name: <%= @user.full_name %></p>
+    <h1><%= @user.full_name %></h1>
     <p>Email: <%= @user.email %></p>
+
+    <h3> Ongoing Volunteer Events </h3>
+    <ul>
+      <% @user.ongoing_events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+
+    <h3> Upcoming Volunteer Events</h3>
+    <ul>
+      <% @user.upcoming_events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+
+    <h3> Past Volunteer Events </h3>
+    <ul>
+      <% @user.past_events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+
     <% if session[:user_id] == @user.id %>
     <%= button_to "Edit User", edit_user_path(@user), method: :get %>
     <%= button_to "Delete User", delete_user_path(@user), method: :delete %>

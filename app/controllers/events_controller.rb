@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def show
     find_event
+    @organizer = User.find(@event.creator_id)
   end
 
   def index
@@ -14,6 +15,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.creator_id = session[:user_id]
+    @event.start_date = start_date_params
+    @event.end_date = end_date_params
     @event.save
     redirect_to @event
   end
@@ -45,5 +48,13 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def start_date_params
+    "#{params[:event]['start_date(3i)']}-#{params[:event]['start_date(2i)']}-#{params[:event]['start_date(1i)']} #{params[:event]['start_date(4i)']}:#{params[:event]['start_date(5i)']}"
+  end
+
+  def end_date_params
+    "#{params[:event]['end_date(3i)']}-#{params[:event]['end_date(2i)']}-#{params[:event]['end_date(1i)']} #{params[:event]['end_date(4i)']}:#{params[:event]['end_date(5i)']}"
   end
 end
