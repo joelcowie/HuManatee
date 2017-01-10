@@ -17,7 +17,11 @@ Event.create(title: "clean up streetZ", description: "Clean those streetZ", crea
 
 Event.create(title: "clean up my apartment", description: "I need help", creator_id: 3, level: "Peer", category: "Apartment", start_date: "02-01-2017 12:15", end_date: "02-10-2017 15:00") #Ongoing
 
-Event.create(title: "Clean shit", description: "I need help with stuff", creator_id: 3, level: "Peer", category: "Apartment", start_date: "02-03-2017 12:15", end_date: "02-10-2017 15:00") #Upcoming
+Event.create(title: "soup kitchen", description: "volunteer at soup kitchens", creator_id: 2, level: "local", category: "help needy", start_date: "10-04-2017 12:30", end_date: "11-04-2017 16:15") #Upcoming
+
+Event.create(title: "blood drive", description: "1 pint of O negative", creator_id: 1, level: "local", category: "donation", start_date: "12-12-2016 12:00", end_date: "13-12-2016 18:00") #Past
+
+Event.create(title: "read at children's hospital", description: "they like green eggs and ham", creator_id: 1, level: "local", category: "service", start_date: "12-12-2017 12:15", end_date: "13-12-2017 15:00") #Upcoming
 
 Attendee.create(user_id: 1, event_id: 1)
 Attendee.create(user_id: 2, event_id: 1)
@@ -26,7 +30,13 @@ Attendee.create(user_id: 3, event_id: 1)
 Attendee.create(user_id: 1, event_id: 2)
 Attendee.create(user_id: 3, event_id: 2)
 
-Attendee.create(user_id: 2, event_id: 3)
 Attendee.create(user_id: 1, event_id: 3)
+Attendee.create(user_id: 2, event_id: 3)
 
 Attendee.create(user_id: 1, event_id: 4)
+
+Attendee.create(user_id: 1, event_id: 5)
+Attendee.create(user_id: 2, event_id: 5)
+Attendee.create(user_id: 3, event_id: 5)
+
+Attendee.create(user_id: 2, event_id: 6)

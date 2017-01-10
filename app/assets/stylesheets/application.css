@@ -17,3 +17,8 @@
  div.nav-bar form.button_to {
    display: inline;
  }
+
+ img {
+   display: block;
+   height: 60px;
+ }

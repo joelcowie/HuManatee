@@ -17,17 +17,9 @@ class Event < ApplicationRecord
     end_hour = end_date.strftime('%I').to_i < 10 ? end_date.strftime('%I')[1] : end_date.strftime('%I')
 
     start_hour + start_date.strftime(':%M%p') + " - " + end_hour + end_date.strftime(':%M%p')
-
-    # if start_date.strftime('%I').to_i < 10
-    #   start_date.strftime('%I')[1] + start_date.strftime(':%M%p') + " - " + end_date.strftime('%I') + end_date.strftime(':%M%p')
-    # elsif
-    # else
-    #   "#{start_date.strftime('%I:%M%p')} - #{end_date.strftime('%I:%M%p')}"
-    # end
   end
 
   def past_event?
     end_date < current_datetime
   end
-
 end

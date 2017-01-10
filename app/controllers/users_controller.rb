@@ -37,10 +37,8 @@ class UsersController < ApplicationController
     find_user
     @user.destroy
 
-    redirect_to '/'
-    # redirect_to login
+    redirect_to login_path
   end
-
 
   private
 

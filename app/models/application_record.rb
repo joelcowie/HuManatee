@@ -6,5 +6,4 @@ class ApplicationRecord < ActiveRecord::Base
   def current_datetime
     DateTime.now.utc
   end
-  
 end

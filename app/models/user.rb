@@ -26,5 +26,4 @@ class User < ApplicationRecord
     @attending = Attendee.where(user_id: id)
     @my_events = Event.where(id: @attending.pluck(:event_id))
   end
-
 end

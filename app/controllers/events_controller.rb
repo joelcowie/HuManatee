@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def show
     find_event
-    @organizer = User.find(@event.creator_id)
+    @organizer = User.find(@event.creator_id) if @event.creator_id
   end
 
   def index
@@ -14,10 +14,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.creator_id = session[:user_id]
-    @event.start_date = start_date_params
-    @event.end_date = end_date_params
-    @event.save
+    @event.update(creator_id: session[:user_id], start_date: start_date_params, end_date: end_date_params)
+
     redirect_to @event
   end
 
@@ -36,8 +34,8 @@ class EventsController < ApplicationController
     find_event
     @event.destroy
 
-    redirect_to events_path
-    #redirect_to user homepage
+    @user = User.find(session[:user_id])
+    redirect_to user_path(@user)
   end
 
   private
