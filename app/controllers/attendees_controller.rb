@@ -5,15 +5,17 @@ class AttendeesController < ApplicationController
   end
 
   def create
+    @event = Event.find(params[:id])
     @attendee = Attendee.create(event_id: params[:id], user_id: session[:user_id])
 
-    redirect_to event_path(params[:id])
+    render :'events/show'
   end
 
   def destroy
+    @event = Event.find(params[:id])
     @attendee = Attendee.find_by(user_id: session[:user_id], event_id: params[:id])
     @attendee.destroy
 
-    redirect_to event_path(params[:id])
+    render :'events/show'
   end
 end

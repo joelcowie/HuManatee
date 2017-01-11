@@ -6,8 +6,23 @@
   </head>
   <body>
     <h1>All Events</h1>
+    <h3> Ongoing Volunteer Events </h3>
     <ul>
-      <% @events.each do |event| %>
+      <% Event.ongoing_events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+
+    <h3> Upcoming Volunteer Events</h3>
+    <ul>
+      <% @events.upcoming_events.each do |event| %>
+        <li><%= link_to event.title, event_path(event) %></li>
+      <% end %>
+    </ul>
+
+    <h3> Past Volunteer Events </h3>
+    <ul>
+      <% @events.past_events.each do |event| %>
         <li><%= link_to event.title, event_path(event) %></li>
       <% end %>
     </ul>

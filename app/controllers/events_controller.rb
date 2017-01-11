@@ -1,7 +1,6 @@
 class EventsController < ApplicationController
   def show
     find_event
-    @organizer = User.find(@event.creator_id) if @event.creator_id
   end
 
   def index
@@ -15,6 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.update(creator_id: session[:user_id], start_date: start_date_params, end_date: end_date_params)
+    Attendee.create(user_id: current_user.id, event_id: @event.id)
 
     redirect_to @event
   end
@@ -26,6 +26,7 @@ class EventsController < ApplicationController
   def update
     find_event
     @event.update(event_params)
+    @event.update(start_date: start_date_params, end_date: end_date_params)
 
     redirect_to @event
   end

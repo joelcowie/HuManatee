@@ -5,12 +5,16 @@
     <title>Edit An Event</title>
   </head>
   <body>
-    <h1>Edit An Event</h1>
+    <h1>Edit Event</h1>
     <%= form_for @event do |f| %>
-      <%= f.label :title %>
-      <%= f.text_field :title %><br>
-      <%= f.label :description %>
-      <%= f.text_field :description %><br>
+      <%= f.label "Title:" %><br>
+      <%= f.text_field :title %><br><br>
+      <%= f.label "Description:" %><br>
+      <%= f.text_area :description %><br><br>
+      <%= f.label "Start Date:" %>
+      <%= f.datetime_select :start_date, :ampm => true, :minute_step => 15 %><br>
+      <%= f.label "End Date:"%>
+      <%= f.datetime_select :end_date, :ampm => true, :minute_step => 15%><br>
       <%= f.submit %>
     <% end %>
   </body>

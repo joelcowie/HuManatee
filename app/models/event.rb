@@ -16,10 +16,26 @@ class Event < ApplicationRecord
 
     end_hour = end_date.strftime('%I').to_i < 10 ? end_date.strftime('%I')[1] : end_date.strftime('%I')
 
-    start_hour + start_date.strftime(':%M%p') + " - " + end_hour + end_date.strftime(':%M%p')
+    start_hour + start_date.strftime(':%M %p') + " - " + end_hour + end_date.strftime(':%M %p')
+  end
+
+  def organizer
+    User.find(self.creator_id) if self.creator_id
   end
 
   def past_event?
     end_date < current_datetime
+  end
+
+  def self.past_events
+    self.where("end_date < ?", current_datetime).order(:start_date)
+  end
+
+  def self.upcoming_events
+    self.where("start_date > ?", current_datetime).order(:start_date)
+  end
+
+  def self.ongoing_events
+    self.where("start_date < ? AND end_date > ?", current_datetime, current_datetime).order(:start_date)
   end
 end
