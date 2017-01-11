@@ -32,23 +32,24 @@ Attendee.create(user_id: 4, event_id: 1)
 
 Attendee.create(user_id: 1, event_id: 2)
 Attendee.create(user_id: 3, event_id: 2)
+Attendee.create(user_id: 4, event_id: 2)
 
 Attendee.create(user_id: 1, event_id: 3)
-Attendee.create(user_id: 2, event_id: 3)
+Attendee.create(user_id: 3, event_id: 3)
 
 Attendee.create(user_id: 1, event_id: 4)
-Attendee.create(user_id: 4, event_id: 4)
+Attendee.create(user_id: 2, event_id: 4)
 
 Attendee.create(user_id: 1, event_id: 5)
 Attendee.create(user_id: 2, event_id: 5)
 Attendee.create(user_id: 3, event_id: 5)
 
-Attendee.create(user_id: 2, event_id: 6)
+Attendee.create(user_id: 1, event_id: 6)
 Attendee.create(user_id: 4, event_id: 6)
 
 Attendee.create(user_id: 1, event_id: 7)
 Attendee.create(user_id: 2, event_id: 7)
-Attendee.create(user_id: 3, event_id: 7)
+Attendee.create(user_id: 4, event_id: 7)
 
 
 Comment.create(user_id:4, event_id:1, description: "Not a sandwich")

@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration[5.0]
       t.integer :receiver_id
       t.integer :rating
       t.text :description
+      
       t.timestamps
     end
   end

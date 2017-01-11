@@ -8,24 +8,25 @@
     <h1><%= @user.full_name %></h1>
     <p>Email: <%= @user.email %></p>
 
+    <h2>My Events</h2>
     <h3> Ongoing Volunteer Events </h3>
     <ul>
       <% @user.ongoing_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
+        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
       <% end %>
     </ul>
 
     <h3> Upcoming Volunteer Events</h3>
     <ul>
       <% @user.upcoming_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
+        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
       <% end %>
     </ul>
 
     <h3> Past Volunteer Events </h3>
     <ul>
       <% @user.past_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
+        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
       <% end %>
     </ul>
 
@@ -35,23 +36,22 @@
     <% end %>
 
     <h3> Reviews </h3>
-
     <% @all_reviews.each do |review| %>
-      Name: <%= link_to review.sender_name, user_path(review.sender) %> <br>
+      Name: <%= link_to review.sender.full_name, user_path(review.sender) %> <br>
       Rating: <%= review.rating %>/5 <br>
       Review: <%= review.description %><br>
-      <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user.id == review.sender_id %><br>
+      <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user == review.sender %><br>
     <% end %>
 
     <% if current_user != @user %>
     <h4> Add a New Review: </h4>
-    <%= form_for @review do |f| %>
-      <%= f.label :rating %>:
-      <%= f.number_field :rating, min: 0, max: 5 %><br>
-      <%= f.label :review %>:<br>
-      <%= f.text_area :description %><br>
-      <%= f.submit %>
-    <% end %>
+      <%= form_for @review do |f| %>
+        <%= f.label :rating %>:
+        <%= f.number_field :rating, min: 0, max: 5 %><br>
+        <%= f.label :review %>:<br>
+        <%= f.text_area :description %><br>
+        <%= f.submit %>
+      <% end %>
     <% end %>
   </body>
 </html>

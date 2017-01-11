@@ -21,7 +21,6 @@ class Event < ApplicationRecord
     start_hour + start_date.strftime(':%M %p') + " - " + end_hour + end_date.strftime(':%M %p')
   end
 
-
   def past_event?
     end_date < current_datetime
   end
