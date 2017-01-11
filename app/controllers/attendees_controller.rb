@@ -8,7 +8,7 @@ class AttendeesController < ApplicationController
     @event = Event.find(params[:id])
     @attendee = Attendee.create(event_id: params[:id], user_id: session[:user_id])
 
-    render :'events/show'
+    redirect_to event_path(@event)
   end
 
   def destroy
@@ -16,6 +16,6 @@ class AttendeesController < ApplicationController
     @attendee = Attendee.find_by(user_id: session[:user_id], event_id: params[:id])
     @attendee.destroy
 
-    render :'events/show'
+    redirect_to event_path(@event)
   end
 end

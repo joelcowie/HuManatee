@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   post '/events/:id/comments', to: 'comments#create', as: 'new_comment'
   delete '/events/:event_id/comments/:comment_id/delete', to: 'comments#destroy', as: 'delete_comment'
 
+  get '/users/:id/reviews', to: 'reviews#index', as: 'reviews'
+  post '/users/:id/reviews', to: 'reviews#create', as: 'new_review'
+  delete '/users/:id/reviews/:review_id/delete', to: 'reviews#destroy', as: 'delete_review'
+
   root 'homepage#index'
 
   delete '/events/:id/delete', to: 'events#destroy', as: "delete_event"
@@ -19,4 +23,6 @@ Rails.application.routes.draw do
   delete '/events/:id/attendees', to: 'attendees#destroy', as: "leave_event"
   post '/events/:id/attendees', to: 'attendees#create', as: "attend_event"
   resources :events, except: [:destroy]
+
+  # get '/logout', to: 'sessions#destroy'
 end

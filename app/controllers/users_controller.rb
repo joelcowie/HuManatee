@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def show
     find_user
+    @review = Review.new
+    @all_reviews = @user.received_reviews
   end
 
   def new
@@ -28,14 +30,13 @@ class UsersController < ApplicationController
   def update
     find_user
     @user.update(user_params)
-
     redirect_to @user
   end
 
   def destroy
     session.clear
     find_user
-    @user.destroy
+    destroy_user
 
     redirect_to login_path
   end
@@ -49,4 +50,15 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find(params[:id])
   end
+
+  def destroy_user
+    Comment.where(user_id: @user.id).each do |comment|
+      comment.destroy
+    end
+    Review.where(sender_id: @user.id).each do |review|
+      review.destroy
+    end
+    @user.destroy
+  end
+
 end

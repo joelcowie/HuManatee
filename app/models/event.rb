@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_many :attendees
   has_many :comments
   belongs_to :creator, :class_name => "User"
+  validates :title, :description, :start_date, :end_date, presence: true
 
   def date_format
     if start_date.strftime('%B %d, %Y') == end_date.strftime('%B %d, %Y')
@@ -20,9 +21,6 @@ class Event < ApplicationRecord
     start_hour + start_date.strftime(':%M %p') + " - " + end_hour + end_date.strftime(':%M %p')
   end
 
-  def organizer
-    User.find(self.creator_id) if self.creator_id
-  end
 
   def past_event?
     end_date < current_datetime

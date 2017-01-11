@@ -6,14 +6,19 @@
   </head>
   <body>
     <h1><%= @event.title %></h1>
-    <p>Organizer: <%= link_to @event.organizer.full_name, user_path(@event.organizer) %></p>
+   <%if @event.creator %>
+      <p>Organizer: <%= link_to @event.creator.full_name, user_path(@event.creator) %></p>
+      <% else %>
+      <p>No Organizer</p>
+      <%end %>
+
     <p>Description: <%= @event.description %></p>
     <p>Date: <%= @event.date_format %></p>
     <p>Time: <%= @event.time_format %></p>
 
     <% if @event.creator && session[:user_id] == @event.creator_id %>
     <%= button_to "Edit Event", edit_event_path(@event), method: :get %>
-    <%= button_to "Delete Event", delete_event_path(@event), method: :delete %>
+    <%= button_to "Delete Event", delete_event_path(@event), method: :delete, data: {confirm: 'Are you sure you want to delete this event?'} %>
     <% end %>
 
     <% if !@event.past_event? && logged_in? %>
@@ -26,10 +31,12 @@
     <%= button_to "All Volunteers", attendees_path(@event), method: :get%>
 
     <h2>Comments</h2>
+    <% if !@all_comments.blank? %>
     <% @all_comments.each do |comment| %>
-      <p><%= comment.commenter %>:
+      <p><%= link_to comment.commenter, user_path(comment.user) %>:
       <%= comment.description %></p>
-      <%= button_to "Delete", delete_comment_path(@event.id, comment.id), method: :delete if comment.user_id == current_user.id %>
+      <%= button_to "Delete", delete_comment_path(@event.id, comment.id), method: :delete, data: {confirm: 'Are you sure you want to delete this comment?'} if logged_in? && comment.user_id == current_user.id %>
+    <% end %>
     <% end %>
     <br>
 
