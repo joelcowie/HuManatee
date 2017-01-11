@@ -23,7 +23,20 @@
         <%= button_to "Attend Event", attend_event_path(@event) %>
       <% end %>
     <% end %>
-
     <%= button_to "All Volunteers", attendees_path(@event), method: :get%>
+
+    <h2>Comments</h2>
+    <% @all_comments.each do |comment| %>
+      <p><%= comment.commenter %>:
+      <%= comment.description %></p>
+      <%= button_to "Delete", delete_comment_path(@event.id, comment.id), method: :delete if comment.user_id == current_user.id %>
+    <% end %>
+    <br>
+
+    <%= form_for @comment do |f| %>
+      <%= f.label "Add comment:" %><br>
+      <%= f.text_area :description %><br>
+      <%= f.submit "Submit" %>
+    <% end %>
   </body>
 </html>

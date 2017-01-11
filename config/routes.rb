@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/events/:id/comments', to: 'comments#index', as: 'comments'
+  post '/events/:id/comments', to: 'comments#create', as: 'new_comment'
+  delete '/events/:event_id/comments/:comment_id/delete', to: 'comments#destroy', as: 'delete_comment'
+
   root 'homepage#index'
 
   delete '/events/:id/delete', to: 'events#destroy', as: "delete_event"

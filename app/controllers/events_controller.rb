@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   def show
     find_event
+    @all_comments = Comment.where(event_id: @event.id)
+    @comment = Comment.new()
   end
 
   def index
