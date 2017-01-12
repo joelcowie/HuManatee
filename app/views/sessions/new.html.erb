@@ -12,7 +12,7 @@
       <div class="col s12">
         <div class="content">
           <h3>Login</h3>
-          <%= flash[:message] if flash[:message] %>
+          <p class="error"><%= flash[:message] if flash[:message] %></p>
           <%= form_tag '/login' do %>
             <%= label_tag :email %>:
             <%= text_field_tag :email %><br>

@@ -17,6 +17,7 @@
     <div class="row">
       <div class="col s12">
           <div class="content">
+            <p class="error"><%= flash[:message] if flash[:message] %></p>
             <%= form_for @event do |f| %>
             <%= f.label :title %><br>
             <%= f.text_field :title %><br><br>

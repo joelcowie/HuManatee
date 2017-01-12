@@ -15,10 +15,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.update(creator_id: session[:user_id], start_date: start_date_params, end_date: end_date_params)
-    Attendee.create(user_id: current_user.id, event_id: @event.id)
-
-    redirect_to @event
+    if @event.update(creator_id: session[:user_id], start_date: start_date_params, end_date: end_date_params)
+      Attendee.create(user_id: current_user.id, event_id: @event.id)
+      redirect_to @event
+    else
+      flash[:message] = @event.errors.full_messages.first
+      redirect_to new_event_path
+    end
   end
 
   def edit
