@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to @user
     else
+      flash[:message] = @user.errors.full_messages.first
       redirect_to signup_path
     end
   end
@@ -58,7 +59,9 @@ class UsersController < ApplicationController
     Review.where(sender_id: @user.id).each do |review|
       review.destroy
     end
+    Attendee.where(user_id: @user.id).each do |attendee|
+      attendee.destroy
+    end
     @user.destroy
   end
-
 end

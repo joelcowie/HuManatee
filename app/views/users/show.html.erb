@@ -30,13 +30,13 @@
             <% @user.ongoing_events.each do |event| %>
               <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
             <% end %>
-          </ul>
+          </ul><hr>
           <h5> Upcoming Volunteer Events</h5>
           <ul>
             <% @user.upcoming_events.each do |event| %>
               <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
             <% end %>
-          </ul>
+          </ul><hr>
           <h5> Past Volunteer Events </h5>
           <ul>
             <% @user.past_events.each do |event| %>
@@ -53,8 +53,8 @@
             <strong>Name: <strong><%= link_to review.sender.full_name, user_path(review.sender) %> <br>
             Rating: <%= review.rating %>/5 <br>
             Review: <%= review.description %><br>
-            <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user == review.sender %><br>
-            <%#= confirm alert %>
+            <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user == review.sender %>
+            <hr>
           <% end %>
           <% if current_user != @user %>
           <h4> Add a New Review: </h4>

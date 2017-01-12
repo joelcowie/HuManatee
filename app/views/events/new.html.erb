@@ -23,16 +23,16 @@
             <%= f.label :description %><br>
             <%= f.text_area :description %><br><br>
             <div class="row">
-              <%= f.label "Start date and army time" %>
+              <%= f.label "Start date" %>
             </div>
             <div class="row">
-              <%= f.datetime_select :start_date, {}, {:ampm => true, :minute_step => 15, class: 'browser-default col s4 date'} %>
+              <%= f.datetime_select :start_date, {:ampm => true, :minute_step => 15}, {class: 'browser-default datetime inline'} %>
             </div>
             <div class="row">
-              <%= f.label "End date and army time" %>
+              <%= f.label "End date" %>
             </div>
             <div class="row">
-              <%= f.datetime_select :end_date, {}, {:ampm => true, :minute_step => 15, class: 'browser-default col s4'}%>
+              <%= f.datetime_select :end_date, {:ampm => true, :minute_step => 15}, {class: 'browser-default datetime inline'}%>
             </div>
             <%= f.submit %>
             <% end %>

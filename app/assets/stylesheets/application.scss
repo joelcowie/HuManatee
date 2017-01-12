@@ -60,3 +60,22 @@ label {
   font-size: large;
   color: black;
 }
+
+input[type=submit] {
+    padding:5px 15px;
+    background-color: #2196f3;
+    color: white;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.error {
+  color: #e53935;
+}
+
+select.inline {
+  width: 75px;
+  display: inline;
+}
