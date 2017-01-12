@@ -5,45 +5,66 @@
     <title>Event</title>
   </head>
   <body>
-    <h1><%= @event.title %></h1>
-   <%if @event.creator %>
-      <p>Organizer: <%= link_to @event.creator.full_name, user_path(@event.creator) %></p>
-      <% else %>
-      <p>No Organizer</p>
-      <%end %>
+    <div class="row">
+    </div>
 
-    <p>Description: <%= @event.description %></p>
-    <p>Date: <%= @event.date_format %></p>
-    <p>Time: <%= @event.time_format %></p>
+    <div class="row">
+      <div class="col s12">
+          <div class="content title">
+            <h3><%= @event.title %></h3>
+          </div>
+      </div>
+    </div>
 
-    <% if @event.creator && current_user == @event.creator %>
-    <%= button_to "Edit Event", edit_event_path(@event), method: :get %>
-    <%= button_to "Delete Event", delete_event_path(@event), method: :delete, data: {confirm: 'Are you sure you want to delete this event?'} %>
-    <% end %>
+    <div class="row">
+      <div class="col s12">
+          <div class="content">
+            <%if @event.creator %>
+            <p>Organizer: <%= link_to @event.creator.full_name, user_path(@event.creator) %></p>
+            <% else %>
+            <p>No Organizer</p>
+            <%end %>
 
-    <% if !@event.past_event? && logged_in? %>
-      <% if Attendee.find_by(user_id: current_user.id, event_id: @event.id)%>
-        <%= button_to "Leave Event", leave_event_path(@event), method: :delete, data: {confirm: 'Are you sure you want to leave this event?'} %>
-      <% else %>
-        <%= button_to "Attend Event", attend_event_path(@event) %>
-      <% end %>
-    <% end %>
-    <%= button_to "All Volunteers", attendees_path(@event), method: :get%>
+            <p>Description: <%= @event.description %></p>
+            <p>Date: <%= @event.date_format %></p>
+            <p>Time: <%= @event.time_format %></p>
+            <p>Number Of Volunteers: <%= @event.attendees.count %></p>
 
-    <h2>Comments</h2>
-    <% if !@all_comments.blank? %>
-    <% @all_comments.each do |comment| %>
-      <p><%= link_to comment.user.full_name, user_path(comment.user) %>:
-      <%= comment.description %></p>
-      <%= button_to "Delete", delete_comment_path(@event.id, comment.id), method: :delete, data: {confirm: 'Are you sure you want to delete this comment?'} if logged_in? && comment.user == current_user %>
-    <% end %>
-    <% end %>
-    <br>
+            <% if @event.creator && current_user == @event.creator %>
+            <%= button_to "Edit Event", edit_event_path(@event), method: :get %>
+            <%= button_to "Delete Event", delete_event_path(@event), method: :delete, data: {confirm: 'Are you sure you want to delete this event?'} %>
+            <% end %>
 
-    <%= form_for @comment do |f| %>
-      <%= f.label "Add comment:" %><br>
-      <%= f.text_area :description %><br>
-      <%= f.submit "Submit" %>
-    <% end %>
+            <% if !@event.past_event? && logged_in? %>
+            <% if Attendee.find_by(user_id: current_user.id, event_id: @event.id)%>
+            <%= button_to "Leave Event", leave_event_path(@event), method: :delete, data: {confirm: 'Are you sure you want to leave this event?'} %>
+            <% else %>
+            <%= button_to "Attend Event", attend_event_path(@event) %>
+            <% end %>
+            <% end %>
+            <%= button_to "All Volunteers", attendees_path(@event), method: :get%>
+          </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col s12">
+        <div class="content">
+          <h4>Comments</h4>
+          <% if !@all_comments.blank? %>
+          <% @all_comments.each do |comment| %>
+            <p><%= link_to comment.user.full_name, user_path(comment.user) %>:
+            <%= comment.description %></p>
+            <%= button_to "Delete", delete_comment_path(@event.id, comment.id), method: :delete, data: {confirm: 'Are you sure you want to delete this comment?'} if logged_in? && comment.user == current_user %>
+          <% end %>
+          <% end %>
+          <%= form_for @comment do |f| %>
+            <%= f.label "Add comment:" %><br>
+            <%= f.text_area :description %><br>
+            <%= f.submit "Submit" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
   </body>
 </html>

@@ -5,8 +5,15 @@
     <title>Homepage</title>
   </head>
   <body>
-    <h1>Welcome to Hu-Manatee!</h1>
-    <%= button_to "Sign Up", signup_path, method: :get %>
-    <%= button_to "Log In", login_path, method: :get %>
+    <div class="homepage">
+      <div class="row">
+        <div class="col s12">
+          <div class="title">
+            <h1>Welcome to Hu-Manatee!</h1>
+            <%= image_tag("homepage_pic.jpg", :class => "homepage-image") %>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

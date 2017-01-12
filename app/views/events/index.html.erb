@@ -5,26 +5,54 @@
     <title>All Events</title>
   </head>
   <body>
-    <h1>All Events</h1>
-    <h3> Ongoing Volunteer Events </h3>
-    <ul>
-      <% Event.ongoing_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
-      <% end %>
-    </ul>
+    <div class='row'>
+    </div>
 
-    <h3> Upcoming Volunteer Events</h3>
-    <ul>
-      <% @events.upcoming_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
-      <% end %>
-    </ul>
+    <div class="row">
+      <div class="col s12">
+        <div class="content title">
+          <h3>All Events</h3>
+        </div>
+      </div>
+    </div>
 
-    <h3> Past Volunteer Events </h3>
-    <ul>
-      <% @events.past_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %></li>
-      <% end %>
-    </ul>
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4> Ongoing Volunteer Events </h4>
+          <ul>
+            <% Event.ongoing_events.each do |event| %>
+            <li><%= link_to event.title, event_path(event) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4> Upcoming Volunteer Events</h4>
+          <ul>
+            <% @events.upcoming_events.each do |event| %>
+            <li><%= link_to event.title, event_path(event) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4> Past Volunteer Events </h4>
+          <ul>
+            <% @events.past_events.each do |event| %>
+            <li><%= link_to event.title, event_path(event) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

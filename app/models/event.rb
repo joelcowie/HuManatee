@@ -36,4 +36,8 @@ class Event < ApplicationRecord
   def self.ongoing_events
     self.where("start_date < ? AND end_date > ?", current_datetime, current_datetime).order(:start_date)
   end
+
+  def self.active_organizers
+    self.group(:creator_id).order("COUNT(creator_id) DESC").limit(3).count
+  end
 end

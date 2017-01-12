@@ -5,53 +5,69 @@
     <title>User</title>
   </head>
   <body>
-    <h1><%= @user.full_name %></h1>
-    <p>Email: <%= @user.email %></p>
+    <div class="row">
+    </div>
 
-    <h2>My Events</h2>
-    <h3> Ongoing Volunteer Events </h3>
-    <ul>
-      <% @user.ongoing_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
-      <% end %>
-    </ul>
+    <div class="row title">
+      <div class="col s12">
+        <div class="content">
+          <h2><%= @user.full_name %></h2>
+          <p><%= @user.email %></p>
+          <% if current_user == @user %>
+            <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+            <%= button_to "Delete User", delete_user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this user?'} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-    <h3> Upcoming Volunteer Events</h3>
-    <ul>
-      <% @user.upcoming_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
-      <% end %>
-    </ul>
+    <div class="row">
+      <div class="col s6">
+        <div class="content">
+          <h4>Events</h4><hr>
+          <h5> Ongoing Volunteer Events </h5>
+          <ul>
+            <% @user.ongoing_events.each do |event| %>
+              <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
+            <% end %>
+          </ul>
+          <h5> Upcoming Volunteer Events</h5>
+          <ul>
+            <% @user.upcoming_events.each do |event| %>
+              <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
+            <% end %>
+          </ul>
+          <h5> Past Volunteer Events </h5>
+          <ul>
+            <% @user.past_events.each do |event| %>
+              <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
 
-    <h3> Past Volunteer Events </h3>
-    <ul>
-      <% @user.past_events.each do |event| %>
-        <li><%= link_to event.title, event_path(event) %><%= " (organizer)" if event.creator == @user %></li>
-      <% end %>
-    </ul>
-
-    <% if current_user == @user %>
-      <%= button_to "Edit User", edit_user_path(@user), method: :get %>
-      <%= button_to "Delete User", delete_user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this user?'} %>
-    <% end %>
-
-    <h3> Reviews </h3>
-    <% @all_reviews.each do |review| %>
-      Name: <%= link_to review.sender.full_name, user_path(review.sender) %> <br>
-      Rating: <%= review.rating %>/5 <br>
-      Review: <%= review.description %><br>
-      <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user == review.sender %><br>
-    <% end %>
-
-    <% if current_user != @user %>
-    <h4> Add a New Review: </h4>
-      <%= form_for @review do |f| %>
-        <%= f.label :rating %>:
-        <%= f.number_field :rating, min: 0, max: 5 %><br>
-        <%= f.label :review %>:<br>
-        <%= f.text_area :description %><br>
-        <%= f.submit %>
-      <% end %>
-    <% end %>
+      <div class="col s6">
+        <div class="content">
+          <h4> Reviews </h4><hr>
+          <% @all_reviews.each do |review| %>
+            <strong>Name: <strong><%= link_to review.sender.full_name, user_path(review.sender) %> <br>
+            Rating: <%= review.rating %>/5 <br>
+            Review: <%= review.description %><br>
+            <%= button_to "Delete", delete_review_path(@user, review), method: :delete if current_user == review.sender %><br>
+            <%#= confirm alert %>
+          <% end %>
+          <% if current_user != @user %>
+          <h4> Add a New Review: </h4>
+            <%= form_for @review do |f| %>
+              <%= f.label :rating %>:
+              <%= f.number_field :rating, min: 0, max: 5 %><br>
+              <%= f.label :review %>:<br>
+              <%= f.text_area :description %><br>
+              <%= f.submit %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

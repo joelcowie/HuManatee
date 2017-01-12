@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   post '/events/:id/comments', to: 'comments#create', as: 'new_comment'
   delete '/events/:event_id/comments/:comment_id/delete', to: 'comments#destroy', as: 'delete_comment'
 
+  get '/statistics', to: 'statistics#index', as: 'statistics'
+
   # get '/logout', to: 'sessions#destroy'
 end

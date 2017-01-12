@@ -6,32 +6,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <nav>
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><%= link_to image_tag("manatee.jpg"), root_path, {class: "brand-logo"} %></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if logged_in? %>
+            <li><%= link_to current_user.full_name, user_path(current_user) %></li>
+            <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+            <li><%= link_to "Create Event", new_event_path %></li>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Log In", login_path %></li>
+          <% end %>
+          <li><%= link_to "Events", events_path %></li>
+          <li><%= link_to "Statistics", statistics_path %></li>
+        </ul>
+      </div>
+    </nav>
   </head>
-
   <body>
-    <div class="nav-bar">
-      <%= link_to image_tag("manatee.jpg"), root_path %>
-      <%= button_to "Users", users_path, method: :get %>
-      <%= button_to "Events", events_path, method: :get %>
-
-      <% if logged_in? %>
-        <%= button_to "Profile page", user_path(current_user), method: :get %>
-        <%= button_to "Log Out", logout_path, method: :delete %>
-        <%= button_to "Create Event", new_event_path, method: :get %>
-      <% else %>
-        <%= button_to "Sign Up", signup_path, method: :get %>
-        <%= button_to "Log In", login_path, method: :get %>
-      <% end %>
-    </div>
-
-    <div class="nav-bar">
-      <% if logged_in? %>
-        <p>Currently Logged in as: <%= current_user.full_name%></p>
-      <% else %>
-        <p>Not currently logged in</p>
-      <% end %>
-    </div>
-
     <%= yield %>
   </body>
 </html>

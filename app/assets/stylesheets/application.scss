@@ -14,11 +14,49 @@
  *= require_self
  */
 
- div.nav-bar form.button_to {
-   display: inline;
- }
+@import "materialize";
 
- img {
-   display: block;
-   height: 60px;
- }
+.brand-logo img {
+  height: 65px;
+  width: 65px;
+}
+
+nav {
+  background-color: #1a237e;
+}
+
+img.homepage-image {
+  height: 400px;
+  width: 700px;
+}
+
+body {
+  background-color: #eeeeee;
+}
+
+div.row {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div.col div {
+  background-color: white;
+  font-family: Ariel;
+}
+
+.title {
+  text-align: center;
+}
+
+form.button_to {
+  display: inline;
+}
+
+div.content {
+  padding: .5px 10px 10px 10px;
+}
+
+label {
+  font-size: large;
+  color: black;
+}

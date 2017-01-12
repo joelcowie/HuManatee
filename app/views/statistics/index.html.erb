@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Statistics</title>
+  </head>
+  <body>
+    <div class="row">
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content title">
+          <h1>Statistics</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4>Most Popular Events By Attendance</h4>
+          <ol>
+            <% Attendee.popular_events.each do |event_id, count_volunteers| %>
+              <li><%= link_to Event.find(event_id).title, event_path(event_id) %>: <%= count_volunteers %> volunteers</li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4>Most Active Hu-Manatees By Events Attended</h4>
+          <ol>
+          <% Attendee.active_volunteers.each do |user_id, count_events| %>
+            <li><%= link_to User.find(user_id).full_name, user_path(user_id) %>: <%= count_events %></li>
+          <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="content">
+          <h4>Most Active Hu-Manatees By Events Organized</h4>
+          <ol>
+            <% Event.active_organizers.each do |creator_id, count_events |  %>
+            <li><%= link_to User.find(creator_id).full_name, user_path(creator_id) %>: <%= count_events %></li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
