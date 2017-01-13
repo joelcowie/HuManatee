@@ -62,6 +62,9 @@ class UsersController < ApplicationController
     Attendee.where(user_id: @user.id).each do |attendee|
       attendee.destroy
     end
+    Event.where(creator_id: @user.id).each do |event|
+      event.update(creator_id: nil)
+    end
     @user.destroy
   end
 end

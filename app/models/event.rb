@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   has_many :users, through: :attendees
   has_many :attendees
   has_many :comments
-  belongs_to :creator, :class_name => "User"
+  belongs_to :creator, :class_name => "User", optional: true
   validates :title, :description, :start_date, :end_date, presence: true
 
   def date_format

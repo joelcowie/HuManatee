@@ -38,6 +38,9 @@ class EventsController < ApplicationController
 
   def destroy
     find_event
+    Attendee.where(event_id: @event.id).each do |attendee|
+      attendee.destroy
+    end
     @event.destroy
 
     @user = User.find(session[:user_id])
