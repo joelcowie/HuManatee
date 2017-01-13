@@ -6,20 +6,17 @@
   </head>
   <body>
     <div class="row">
-    </div>
-
-    <div class="row">
       <div class="col s12">
-          <div class="content title">
-            <h4>Volunteers</h4><hr>
-          </div>
+        <div class="content title">
+          <h4>Volunteers</h4><hr>
+        </div>
         <div class="content">
-            <ol>
-              <% @attendees.each do |attendee|  %>
-              <li><%= link_to attendee.full_name, user_path(attendee) %></li>
-              <% end %>
-            </ol>
-          </div>
+          <ol>
+            <% @attendees.each do |attendee|  %>
+            <li><%= link_to attendee.full_name, user_path(attendee) %></li>
+            <% end %>
+          </ol>
+        </div>
       </div>
     </div>
   </body>
