@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get '/users/new', to: 'users#new', as: "signup"
   delete '/users/:id/delete', to: 'users#destroy', as: "delete_user"
+  get '/search', to: 'users#search', as: 'search'
   resources :users, except: [:destroy, :new]
 
   get '/users/:id/reviews', to: 'reviews#index', as: 'reviews'
@@ -25,6 +26,10 @@ Rails.application.routes.draw do
   delete '/events/:event_id/comments/:comment_id/delete', to: 'comments#destroy', as: 'delete_comment'
 
   get '/statistics', to: 'statistics#index', as: 'statistics'
+
+  # get '/messages', to: 'messages#index', as: 'messages'
+  # get '/users/:id/messages/new', to: 'messages#new', as: 'new_message'
+  # post '/users/:id/messages', to: 'messages#create'
 
   # get '/logout', to: 'sessions#destroy'
 end

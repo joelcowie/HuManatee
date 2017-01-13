@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def search
+    @user = User.search(params[:name])
+  end
+
   def show
     find_user
     @review = Review.new
