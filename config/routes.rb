@@ -31,5 +31,5 @@ Rails.application.routes.draw do
   # get '/users/:id/messages/new', to: 'messages#new', as: 'new_message'
   # post '/users/:id/messages', to: 'messages#create'
 
-  # get '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 end
