@@ -1,24 +1,28 @@
-# README
+# HuManatee
+![home-page]
+[HuManatee][HuManatee]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Summary
 
-Things you may want to cover:
+[HuManatee][HuManatee] is a Ruby on Rails app for organizing volunteer events. HuManatee allows users to: 
 
-* Ruby version
+* Create an account
+* Log In/Log Out
+* Fuzzy search for other users
+* Create/Delete an Event
+* Attend Events
+* Comment on event pages
+* Leave reviews for other users
 
-* System dependencies
+## Structure
 
-* Configuration
+#### Back end
 
-* Database creation
+HuManatee is built entirely on Ruby on Rails using PostgreSQL. It incorporates full CRUD functionality and RESTful principles. User login/password is encrypted using BCrypt. 
 
-* Database initialization
+#### Front end
 
-* How to run the test suite
+The views are rendered through Rails, using the Materialize framework for styling.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[HuManatee]: http://www.hu-manatee.herokuapp.com
+[home-page]: ./app/assets/images/home-ss.png
